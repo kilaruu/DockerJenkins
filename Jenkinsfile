@@ -8,7 +8,6 @@ pipeline{
          }        
        stage('Build Docker image'){
             steps{
-                sh 'docker stop $(docker ps -a -q)'
                 sh 'docker build -t 070682943625.dkr.ecr.ap-south-1.amazonaws.com/javaapp:new .'
 		sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 070682943625.dkr.ecr.ap-south-1.amazonaws.com/javaapp'
 		sh 'docker push 070682943625.dkr.ecr.ap-south-1.amazonaws.com/javaapp:new'
